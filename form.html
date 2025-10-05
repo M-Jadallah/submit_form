@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج الخطة الدراسية</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .form-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        .date-group {
+            display: flex;
+            gap: 10px;
+        }
+        .date-group input {
+            flex: 1;
+        }
+        .days-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .required::after {
+            content: " *";
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>نموذج الخطة الدراسية</h1>
+        <form id="studentForm">
+            <!-- اسم الطالب -->
+            <div class="form-group">
+                <label for="studentName" class="required">اسم الطالب</label>
+                <input type="text" id="studentName" name="studentName" required>
+            </div>
+
+            <!-- المجموعة -->
+            <div class="form-group">
+                <label for="group" class="required">المجموعة</label>
+                <select id="group" name="group" required>
+                    <option value="">اختر المجموعة</option>
+                </select>
+            </div>
+
+            <!-- نوع الخطة -->
+            <div class="form-group">
+                <label for="planType" class="required">نوع الخطة</label>
+                <select id="planType" name="planType" required>
+                    <option value="">اختر نوع الخطة</option>
+                </select>
+            </div>
+
+            <!-- نوع الخطة الفرعي -->
+            <div class="form-group">
+                <label for="subPlan" class="required">نوع الخطة الفرعي</label>
+                <select id="subPlan" name="subPlan" required disabled>
+                    <option value="">اختر نوع الخطة أولاً</option>
+                </select>
+            </div>
+
+            <!-- أيام الدوام -->
+            <div class="form-group">
+                <label class="required">أيام الدوام</label>
+                <div class="days-group">
+                    <div>
+                        <label for="day1">اليوم الأول</label>
+                        <select id="day1" name="day1" required>
+                            <option value="السبت">السبت</option>
+                            <option value="الأحد">الأحد</option>
+                            <option value="الإثنين">الإثنين</option>
+                            <option value="الثلاثاء">الثلاثاء</option>
+                            <option value="الأربعاء">الأربعاء</option>
+                            <option value="الخميس">الخميس</option>
+                            <option value="الجمعة">الجمعة</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="day2">اليوم الثاني</label>
+                        <select id="day2" name="day2" required>
+                            <option value="السبت">السبت</option>
+                            <option value="الأحد">الأحد</option>
+                            <option value="الإثنين">الإثنين</option>
+                            <option value="الثلاثاء">الثلاثاء</option>
+                            <option value="الأربعاء">الأربعاء</option>
+                            <option value="الخميس">الخميس</option>
+                            <option value="الجمعة">الجمعة</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- تاريخ بدء الخطة -->
+            <div class="form-group">
+                <label class="required">تاريخ بدء الخطة</label>
+                <div class="date-group">
+                    <div>
+                        <label for="day">اليوم</label>
+                        <input type="number" id="day" name="day" min="1" max="31" placeholder="يوم" required>
+                    </div>
+                    <div>
+                        <label for="month">الشهر</label>
+                        <input type="number" id="month" name="month" min="1" max="12" placeholder="شهر" required>
+                    </div>
+                    <div>
+                        <label for="year">السنة</label>
+                        <input type="number" id="year" name="year" min="2024" max="2030" placeholder="سنة" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- عدد أيام الخطة -->
+            <div class="form-group">
+                <label for="planDays" class="required">عدد أيام الخطة</label>
+                <input type="number" id="planDays" name="planDays" min="1" required>
+            </div>
+
+            <button type="submit">إرسال البيانات</button>
+        </form>
+    </div>
+
+    <script>
+        // عناصر DOM
+        const groupSelect = document.getElementById('group');
+        const planTypeSelect = document.getElementById('planType');
+        const subPlanSelect = document.getElementById('subPlan');
+        const form = document.getElementById('studentForm');
+
+        // البيانات الثابتة (ستتم استعادتها من Google Sheets عبر n8n لاحقاً)
+        let groupsData = [];
+        let planTypesData = [];
+        let subPlansData = {};
+
+        // تهيئة النموذج
+        document.addEventListener('DOMContentLoaded', function() {
+            loadInitialData();
+            setupEventListeners();
+        });
+
+        // تحميل البيانات الأولية
+        async function loadInitialData() {
+            try {
+                // استدعاء webhook للحصول على البيانات من n8n
+                const response = await fetch('https://your-n8n-domain/webhook/init-data', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                const data = await response.json();
+                
+                // تعبئة البيانات في القوائم
+                populateGroups(data.groups);
+                populatePlanTypes(data.planTypes);
+                subPlansData = data.subPlans;
+                
+            } catch (error) {
+                console.error('Error loading initial data:', error);
+                // استخدام بيانات افتراضية للاختبار
+                loadSampleData();
+            }
+        }
+
+        // تحميل بيانات نموذجية للاختبار
+        function loadSampleData() {
+            groupsData = ['المجموعة أ', 'المجموعة ب', 'المجموعة ج'];
+            planTypesData = ['خطة دراسية', 'خطة تدريبية', 'خطة بحثية'];
+            subPlansData = {
+                'خطة دراسية': ['فصلية', 'سنوية', 'مكثفة'],
+                'خطة تدريبية': ['أساسية', 'متقدمة', 'متخصصة'],
+                'خطة بحثية': ['مشروع تخرج', 'بحث علمي', 'دراسة ميدانية']
+            };
+
+            populateGroups(groupsData);
+            populatePlanTypes(planTypesData);
+        }
+
+        // تعبئة قائمة المجموعات
+        function populateGroups(groups) {
+            groupSelect.innerHTML = '<option value="">اختر المجموعة</option>';
+            groups.forEach(group => {
+                const option = document.createElement('option');
+                option.value = group;
+                option.textContent = group;
+                groupSelect.appendChild(option);
+            });
+        }
+
+        // تعبئة قائمة أنواع الخطط
+        function populatePlanTypes(planTypes) {
+            planTypeSelect.innerHTML = '<option value="">اختر نوع الخطة</option>';
+            planTypes.forEach(planType => {
+                const option = document.createElement('option');
+                option.value = planType;
+                option.textContent = planType;
+                planTypeSelect.appendChild(option);
+            });
+        }
+
+        // تعبئة قائمة الأنواع الفرعية بناءً على النوع الرئيسي
+        function populateSubPlans(planType) {
+            subPlanSelect.innerHTML = '<option value="">اختر نوع الخطة الفرعي</option>';
+            subPlanSelect.disabled = true;
+
+            if (planType && subPlansData[planType]) {
+                subPlansData[planType].forEach(subPlan => {
+                    const option = document.createElement('option');
+                    option.value = subPlan;
+                    option.textContent = subPlan;
+                    subPlanSelect.appendChild(option);
+                });
+                subPlanSelect.disabled = false;
+            }
+        }
+
+        // إعداد مستمعي الأحداث
+        function setupEventListeners() {
+            planTypeSelect.addEventListener('change', function() {
+                populateSubPlans(this.value);
+            });
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                submitForm();
+            });
+        }
+
+        // إرسال النموذج
+        async function submitForm() {
+            const formData = {
+                studentName: document.getElementById('studentName').value,
+                group: groupSelect.value,
+                planType: planTypeSelect.value,
+                subPlan: subPlanSelect.value,
+                day1: document.getElementById('day1').value,
+                day2: document.getElementById('day2').value,
+                day: document.getElementById('day').value,
+                month: document.getElementById('month').value,
+                year: document.getElementById('year').value,
+                planDays: document.getElementById('planDays').value,
+                submissionDate: new Date().toISOString()
+            };
+
+            try {
+                const response = await fetch('https://your-n8n-domain/webhook/form-submission', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('تم إرسال البيانات بنجاح!');
+                    form.reset();
+                    populateSubPlans(''); // إعادة تعيين القائمة الفرعية
+                } else {
+                    alert('حدث خطأ في إرسال البيانات. يرجى المحاولة مرة أخرى.');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert('حدث خطأ في الاتصال. يرجى المحاولة مرة أخرى.');
+            }
+        }
+    </script>
+</body>
+</html>
